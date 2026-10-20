@@ -14,17 +14,14 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
+        // KPI calculations from database (BR-10)
         $totalAssets = Asset::count();
         $availableAssets = Asset::where('status', Asset::STATUS_AVAILABLE)->count();
         $assignedAssets = Asset::where('status', Asset::STATUS_ASSIGNED)->count();
         $borrowedAssets = Asset::where('status', Asset::STATUS_BORROWED)->count();
         $maintenanceAssets = Asset::where('status', Asset::STATUS_MAINTENANCE)->count();
         $retiredAssets = Asset::where('status', Asset::STATUS_RETIRED)->count();
-
-        $recentMovements = AssetMovement::with(['asset', 'fromLocation', 'toLocation', 'toUser'])
-            ->latest('moved_at')
-            ->limit(5)
-            ->get();
+        $totalCost = Asset::sum('purchase_cost');
 
         $activeLoans = Loan::with(['asset', 'borrower'])
             ->where('status', Loan::STATUS_ACTIVE)
@@ -38,8 +35,13 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        $categoryDistribution = Category::withCount('assets')->get();
-        $locationDistribution = Location::whereNull('parent_id')->withCount('assets')->get();
+        $recentMovements = AssetMovement::with(['asset', 'fromLocation', 'toLocation', 'toUser', 'creator'])
+            ->latest('moved_at')
+            ->limit(6)
+            ->get();
+
+        $categories = Category::withCount('assets')->orderBy('assets_count', 'desc')->get();
+        $locations = Location::whereNull('parent_id')->withCount('assets')->orderBy('assets_count', 'desc')->get();
 
         return view('dashboard', compact(
             'totalAssets',
@@ -48,11 +50,12 @@ class DashboardController extends Controller
             'borrowedAssets',
             'maintenanceAssets',
             'retiredAssets',
-            'recentMovements',
+            'totalCost',
             'activeLoans',
             'activeMaintenance',
-            'categoryDistribution',
-            'locationDistribution'
+            'recentMovements',
+            'categories',
+            'locations'
         ));
     }
 }
