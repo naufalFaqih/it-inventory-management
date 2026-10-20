@@ -27,8 +27,17 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('home');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Asset Management (Admin & IT Staff)
+    // Asset Management (Read: All staff, Write: Administrator & IT Staff)
     Route::get('/assets', [AssetController::class, 'index'])->name('assets.index');
+    Route::middleware('role:administrator,it_staff')->group(function () {
+        Route::get('/assets/create', [AssetController::class, 'create'])->name('assets.create');
+        Route::post('/assets', [AssetController::class, 'store'])->name('assets.store');
+        Route::get('/assets/{asset}/edit', [AssetController::class, 'edit'])->name('assets.edit');
+        Route::put('/assets/{asset}', [AssetController::class, 'update'])->name('assets.update');
+        Route::patch('/assets/{asset}/retire', [AssetController::class, 'retire'])->name('assets.retire');
+        Route::delete('/assets/{asset}', [AssetController::class, 'destroy'])->name('assets.destroy');
+    });
+    Route::get('/assets/{asset}', [AssetController::class, 'show'])->name('assets.show');
     Route::get('/movements', [AssetMovementController::class, 'index'])->name('movements.index');
     Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
