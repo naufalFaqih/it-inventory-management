@@ -6,7 +6,7 @@ Web application internal untuk pengelolaan aset dan operasional inventory Divisi
 
 ## 🛠 Tech Stack
 
-- **Backend:** Laravel 11.x (PHP 8.2+)
+- **Backend:** Laravel 13.x (PHP 8.3+)
 - **Database:** MySQL 8.0+
 - **Frontend:** Blade Templates & Reusable Components
 - **Styling:** Tailwind CSS
@@ -59,10 +59,12 @@ Web application internal untuk pengelolaan aset dan operasional inventory Divisi
 ## 🚀 Panduan Setup & Instalasi Lokal
 
 ### Prasyarat
-- PHP >= 8.2 (ekstensi: pdo_mysql, mbstring, openssl, tokenizer, xml, ctype, json, bcmath)
+- PHP >= 8.3 (ekstensi: pdo_mysql, mbstring, openssl, tokenizer, xml, ctype, json, bcmath)
 - Composer
 - Node.js (v18+) & NPM
-- MySQL Server (misal via Laragon atau MySQL Service)
+- MySQL 8.0+ (misal via [Laragon](https://laragon.org/) — **pastikan service MySQL sudah berjalan**)
+
+> **⚠️ Catatan Laragon:** Sebelum menjalankan migrasi, buka Laragon dan klik **Start All** untuk memastikan MySQL berjalan di port 3306.
 
 ### Langkah Instalasi
 ```bash
@@ -76,15 +78,20 @@ composer install
 # 3. Konfigurasi Environment
 cp .env.example .env
 php artisan key:generate
+```
 
-# Konfigurasikan kredensial DB pada file .env:
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=it_inventory
-# DB_USERNAME=root
-# DB_PASSWORD=
+Edit file `.env` dan sesuaikan konfigurasi database (sudah tersedia di `.env.example`):
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=it_inventory
+DB_USERNAME=root
+DB_PASSWORD=        # kosongkan untuk Laragon default
+```
 
+Buat database `it_inventory` terlebih dahulu di MySQL/phpMyAdmin, kemudian:
+```bash
 # 4. Jalankan Migrasi & Seeder
 php artisan migrate --seed
 
@@ -95,6 +102,18 @@ npm run build
 # 6. Jalankan Server Pengembangan
 php artisan serve
 ```
+
+Buka browser: **http://localhost:8000/login**
+
+### Akun Bawaan (Seeder)
+
+| Email | Password | Role |
+|-------|----------|------|
+| admin@inventory.local | password | Administrator |
+| staff@inventory.local | password | IT Staff |
+| viewer@inventory.local | password | Viewer (read-only) |
+
+> **Catatan:** Akun `inactive@inventory.local` sengaja dinonaktifkan — tidak dapat login.
 
 ---
 
