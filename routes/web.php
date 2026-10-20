@@ -41,9 +41,9 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::resource('users', UserController::class)->except(['destroy', 'show']);
 
         // Master Data (FR-005, FR-006, FR-007)
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-        Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
-        Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+        Route::resource('categories', CategoryController::class)->except(['show']);
+        Route::resource('locations', LocationController::class)->except(['show']);
+        Route::resource('departments', DepartmentController::class)->except(['show']);
 
         // Audit Trail (FR-041 - FR-044)
         Route::get('/audit-logs', [AuditLogController::class, 'index'])->name('audit-logs.index');
