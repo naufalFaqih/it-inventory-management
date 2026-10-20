@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useTailwind();
+
         Gate::define('admin-only', fn (User $user) => $user->isAdmin());
         Gate::define('manage-users', fn (User $user) => $user->isAdmin());
         Gate::define('view-audit-logs', fn (User $user) => $user->isAdmin());
