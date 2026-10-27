@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? 'IT Inventory Management' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @fonts
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
 
