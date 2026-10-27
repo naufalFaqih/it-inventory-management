@@ -4,6 +4,96 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    --animate-aurora: aurora 26s ease-in-out infinite;
+    --animate-aurora-reverse: aurora-reverse 32s ease-in-out infinite;
+    --animate-shake: shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 16px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes aurora {
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate3d(4%, -6%, 0) scale(1.12);
+    }
+}
+
+@keyframes aurora-reverse {
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: translate3d(0, 0, 0) scale(1.08);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: translate3d(-5%, 5%, 0) scale(0.95);
+    }
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@layer base {
+    /* Menetralkan latar kuning autofill browser agar input tetap menyatu dengan desain. */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        -webkit-text-fill-color: #0f172a;
+        caret-color: #0f172a;
+        box-shadow: 0 0 0 1000px #ffffff inset;
+        transition: background-color 9999s ease-in-out 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-delay: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
 }
