@@ -49,13 +49,14 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Sampai Tanggal Beli</label>
-                    <div class="flex items-center gap-2">
-                        <input type="date" name="end_date" value="{{ request('end_date') }}"
-                            class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
-                            Filter
-                        </button>
-                    </div>
+                    <input type="date" name="end_date" value="{{ request('end_date') }}"
+                        class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+
+                <div class="sm:col-span-2 lg:col-span-5 flex justify-end">
+                    <button type="submit" class="w-full sm:w-auto px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
+                        Filter
+                    </button>
                 </div>
             </form>
         </div>
@@ -75,6 +76,29 @@
             <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
                 <span class="text-xs font-medium text-slate-500 uppercase tracking-wider block">Rata-rata Nilai / Unit</span>
                 <span class="text-2xl font-bold text-slate-800 mt-2 block">Rp {{ number_format($averageValue, 0, ',', '.') }}</span>
+            </div>
+        </div>
+
+        <!-- Export Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-xs text-slate-500">
+                Export mengikuti filter aktif dan memuat seluruh data hasil filter.
+            </p>
+            <div class="flex items-center gap-2">
+                <a href="{{ route('reports.export.pdf', request()->query()) }}"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl text-sm font-medium transition shadow-sm">
+                    <svg class="w-4 h-4 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Export PDF
+                </a>
+                <a href="{{ route('reports.export.excel', request()->query()) }}"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-medium transition shadow-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Export Excel
+                </a>
             </div>
         </div>
 
