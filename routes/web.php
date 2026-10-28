@@ -43,6 +43,8 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/loans', [LoanController::class, 'index'])->name('loans.index');
     Route::get('/maintenance', [MaintenanceController::class, 'index'])->name('maintenance.index');
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/export/pdf', [ReportController::class, 'exportPdf'])->name('reports.export.pdf');
+    Route::get('/reports/export/excel', [ReportController::class, 'exportExcel'])->name('reports.export.excel');
 
     Route::middleware('role:administrator,it_staff')->group(function () {
         // Asset Movements (FR-04)
