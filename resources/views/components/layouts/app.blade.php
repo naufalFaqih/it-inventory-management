@@ -19,14 +19,14 @@
             class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full transition-transform duration-200 ease-in-out bg-slate-900 text-slate-300 flex flex-col flex-shrink-0 border-r border-slate-800 lg:translate-x-0 lg:static lg:flex lg:min-h-screen">
             <!-- Logo -->
             <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-800/80 bg-slate-950/40">
-                <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                    </svg>
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+                    <div class="flex size-11 items-center justify-center rounded-2xl text-white shadow-lg shadow-indigo-950/60">
+                        <img src="{{ asset('images/logo-tlhb.png') }}" alt="IT Management Asset" class="size-11 object-contain">
+                    </div>
                 </div>
                 <div>
-                    <span class="font-bold text-white tracking-tight text-sm block">IT Inventory Trans</span>
-                    <span class="text-xs text-slate-400 block -mt-0.5">Asset Operations</span>
+                    <span class="font-bold text-white tracking-tight text-sm block">IT Management Asset</span>
+                    <span class="text-xs text-slate-400 block -mt-0.5">The Trans Luxury Hotel Bandung</span>
                 </div>
             </div>
 

@@ -50,14 +50,12 @@
 
             {{-- Brand lockup --}}
             <div class="relative z-10 flex animate-fade-up items-center gap-3">
-                <div class="flex size-11 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-950/60">
-                    <svg class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                    </svg>
+                <div class="flex size-11 items-center justify-center rounded-2xl text-white shadow-lg shadow-indigo-950/60">
+                    <img src="{{ asset('images/logo-tlhb.png') }}" alt="IT Management Asset" class="size-11 object-contain">
                 </div>
                 <div class="leading-tight">
-                    <p class="text-sm font-semibold tracking-tight text-white">IT Inventory Trans</p>
-                    <p class="text-xs text-slate-400">Asset Operations</p>
+                    <p class="text-sm font-semibold tracking-tight text-white">IT MANAGEMENT ASSET</p>
+                    <p class="text-xs text-slate-400">THE TRANS LUXURY HOTEL BANDUNG</p>
                 </div>
             </div>
 
